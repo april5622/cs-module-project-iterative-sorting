@@ -1,11 +1,22 @@
 # TO-DO: Complete the selection_sort() function below
-def selection_sort(arr):
-    pass
-
+def selection_sort(arr): 
+    for i in range(0, len(arr)-1):
+        min = i
+        for j in range(i + 1, len(arr)): #all elements to the right of the position to end of arr
+            if arr[j] < arr[min]: # if the value in the unsorted arr is smaller than the current min
+                min = j # that value will be the new min
+        if min != i: # if we find a lower value than our default, 
+            arr[min], arr[i] = arr[i], arr[min] #then we need to switch those items
+    return arr
+# TIME: O(n^2) since its two for loopj nested. SPACE: O(1)
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    pass
+    for i in range(len(arr) -1):
+        for j in range(0, len(arr) - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
 
 '''
 STRETCH: implement the Counting Sort function below
