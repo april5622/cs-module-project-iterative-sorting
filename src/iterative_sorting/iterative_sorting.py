@@ -1,35 +1,24 @@
 # TO-DO: Complete the selection_sort() function below
-def selection_sort(arr):
-    # loop through n-1 elements
-    for i in range(0, len(arr) - 1):
-        cur_index = i
-        smallest_index = cur_index
-        # TO-DO: find next smallest element
-        # (hint, can do in 3 loc)
-        for j in range(cur_index + 1, len(arr)):
-            if arr[j] < arr[smallest_index]:
-                smallest_index = j
-
-        # TO-DO: swap
-        # swap the found minimum element with the first
-        arr[smallest_index], arr[cur_index] = arr[cur_index], arr[smallest_index]
-
+def selection_sort(arr): 
+    for i in range(0, len(arr)-1):
+        min = i
+        for j in range(i + 1, len(arr)): #all elements to the right of the position to end of arr
+            if arr[j] < arr[min]: # if the value in the unsorted arr is smaller than the current min
+                min = j # that value will be the new min
+        if min != i: # if we find a lower value than our default, 
+            arr[min], arr[i] = arr[i], arr[min] #then we need to switch those items
     return arr
-
+# TIME: O(n^2) since its two for loop nested. SPACE: O(1)
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    # looping through the length of the arr but in reserve
-    for i in range(len(arr) - 1):
-        # range from the length of the array
-        # the current is in range starting with 0 to the length of the i arr in reserve 
+    for i in range(len(arr) -1):
         for j in range(0, len(arr) - i - 1):
-            # if current element is greater than the next 
             if arr[j] > arr[j + 1]:
-                # swap the element if current is greater than the next element
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
-
     return arr
+# TIME: O(n^2) since its two for loop nested. SPACE: O(1)
+
 
 '''
 STRETCH: implement the Counting Sort function below
@@ -49,7 +38,6 @@ buckets.
 What is the time and space complexity of the counting sort algorithm?
 '''
 def counting_sort(arr, maximum=None):
-    # Your code here
     m = maximum + 1
     count = [0] * m
     
@@ -57,10 +45,8 @@ def counting_sort(arr, maximum=None):
         count[i] += 1
     j = 0
     for i in range(m):
-        for a in range(count[i]):
+        for j in range(count[i]):
             arr[j] = i
             j += 1
 
     return arr
-
-print(counting_sort( [1, 2, 7, 3, 2, 1, 4, 2, 3, 2, 1], 7 ))
